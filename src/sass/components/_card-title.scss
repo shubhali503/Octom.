@@ -1,0 +1,27 @@
+%card-title{
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+}
+
+.card-title__design{
+    @extend %card-title;
+    background-color: #5051F9;
+}
+
+.card-title__research{
+    @extend %card-title;
+    background-color: #1EA7FF;
+}
+
+.card-title__planning{
+    @extend %card-title;
+    background-color: #E97342;
+}
+
+.card-title__content{
+    @extend %card-title;
+    background-color: #F59E0B;
+}

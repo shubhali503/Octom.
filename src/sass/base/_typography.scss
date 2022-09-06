@@ -1,0 +1,21 @@
+.heading-lg{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.heading-md{
+    font-size: 17px;
+    font-weight: 500;
+    color: #232360;
+}
+
+.heading-sm{
+    @extend .heading-md;
+    font-size: 13px;
+}
+
+.heading-xsm{
+    font-size: 12px;
+    font-weight: 500;
+    color: #768396;
+}

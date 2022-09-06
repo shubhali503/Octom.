@@ -1,0 +1,38 @@
+.sidebar{
+    width: 85px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    // bottom: 0;
+    z-index: 100;
+    background: #FBFAFF;
+
+    .company-logo{
+        display: inline-block;
+        line-height: 0;
+    }
+
+    .side-scroll{
+        height: calc(100% - 66px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__link{
+            padding: 12px 13px;
+            border-radius: 14px;
+
+            &:hover{
+                background: #5051F9;
+                box-shadow: 0px 8px 14px rgba(62, 107, 224, 0.12);
+
+                .side-icon{
+                    // filter: invert(0.5) sepia(0)
+                }
+
+            }
+        }
+    }
+}

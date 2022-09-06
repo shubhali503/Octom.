@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octom.</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+<script defer src="bundle.js"></script><link href="index.css" rel="stylesheet"></head>
+<body>
+    <aside class="sidebar">
+        <a href="javascript:void(0)" class="company-logo mt-2 mb-2 ml-1 mr-1">
+            <!-- <svg class="icon octom-logo">
+                <use href="#octom-logo"></use>
+            </svg> -->
+            <img src="images/octom-logo.png" alt="octom-logo">
+        </a>
+        <div class="side-scroll">
+            <a href="javascript:void(0)" class="side-scroll__link mb-3">
+                <svg class="icon side-icon">
+                    <use href="#side-icon1"></use>
+                </svg>
+            </a>
+            <a href="javascript:void(0)" class="side-scroll__link mb-3">
+                <svg class="icon side-icon">
+                    <use href="#side-icon2"></use>
+                </svg>
+            </a>
+            <a href="javascript:void(0)" class="side-scroll__link mb-3">
+                <svg class="icon side-icon">
+                    <use href="#side-icon3"></use>
+                </svg>
+            </a>
+            <a href="javascript:void(0)" class="side-scroll__link mb-3">
+                <svg class="icon side-icon">
+                    <use href="#side-icon4"></use>
+                </svg>
+            </a>
+            <a href="javascript:void(0)" class="side-scroll__link mb-3">
+                <svg class="icon side-icon">
+                    <use href="#side-icon5"></use>
+                </svg>
+            </a>
+            <a href="javascript:void(0)" class="side-scroll__link">
+                <svg class="icon side-icon">
+                    <use href="#side-icon6"></use>
+                </svg>
+            </a>
+        </div>
+    </aside>
+
+    <header class="header pt-2 pb-2 pl-4 pr-4">
+        <div class="header__search">
+            <input type="search" class="header__search-input" placeholder="Search anything...">
+            <button class="header__search-btn">
+                <svg class="icon search-icon">
+                    <use href="#search-icon"></use>
+                </svg>
+            </button>
+        </div>
+        <div class="header__profile">
+            <button class="header__profile-notif mr-4">
+                <svg class="icon bell-icon">
+                    <use href="#bell-icon"></use>
+                </svg>
+            </button>
+            <div class="header__profile-user p-1">
+                <a href="javascript:void(0)" class="mr-2"><img src="images/header-profile.png" alt="profile-img"></a>
+                <svg class="icon chevron">
+                    <use href="#chevron"></use>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="tasks pt-5 pl-3 pr-3 pb-8">
+
+            <div class="tasks__header">
+                <h1 class="heading-lg"><img src="images/fire.png" alt="" class="mr-1">Task</h1>
+                <div class="tasks__header-right">
+                    <figure>
+                        <img src="images/person1.png" alt="user-1">
+                    </figure>
+                    <figure>
+                        <img src="images/person2.png" alt="user-2">
+                    </figure>
+                    <figure>
+                        <img src="images/person-3.png" alt="user-3">
+                    </figure>
+                    <figure>
+                        <img src="images/person4.png" alt="user-4">
+                    </figure>
+                    <figure>
+                        <img src="images/person5.png" alt="user-5">
+                    </figure>
+                    <span class="mr-1">+6</span>
+                    <button class="add-btn-rounded">+</button>
+                </div>
+            </div>
+
+            <div class="tasks__wrapper mt-4">
+                <ul class="tasks__list mr-1">
+                    <li class="tasks__list-title p-2 mb-2">
+                        <h2 class="heading-md">Backlog</h2>
+                        <div class="tasks__list-btns">
+                            <button class="menu-btn mr-1">
+                                <svg class="icon ellipsis">
+                                    <use href="#ellipsis"></use>
+                                </svg>
+                            </button>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </li>
+
+                    <li>
+                        <ul class="tasks__list-wrapper">
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__design">Design</span>
+                                <figure class="design-img mt-2">
+                                    <img src="images/design1.jpg" alt="design1">
+                                </figure>
+                                <h3 class="heading-sm mt-1">Create styleguide foundation</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-20">Aug 20, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person1.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person2.png" alt="user-2">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person5.png" alt="user-3">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+        
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__research">Research</span>
+                                <h3 class="heading-sm mt-2">Copywriting Content</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-20">Aug 20, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person4.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person6.png" alt="user-2">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+        
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__planning">Planning</span>
+                                <h3 class="heading-sm mt-2">Update requiment list</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-09-20">Sep 20, 2021</time>
+                                <div class="card-bottom2">
+                                    <a href="javascript:void(0)">
+                                        <svg class="icon comment"><use href="#comment"></use></svg> <span>4 Comments</span>
+                                    </a>
+                                    <a href="javascript:void(0)">
+                                        <svg class="icon attachment"><use href="#attachment"></use></svg> <span>11 files</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="tasks__list mr-1">
+                    <li class="tasks__list-title p-2 mb-2">
+                        <h2 class="heading-md">To Do</h2>
+                        <div class="tasks__list-btns">
+                            <button class="menu-btn mr-1">
+                                <svg class="icon ellipsis">
+                                    <use href="#ellipsis"></use>
+                                </svg>
+                            </button>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <ul class="tasks__list-wrapper">
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__research">Research</span>
+                                <h3 class="heading-sm mt-2">auditing information architecture</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-20">Aug 20, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person4.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person6.png" alt="user-2">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+        
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__content">Content</span>
+                                <figure class="design-img mt-2">
+                                    <img src="images/design2.jpg" alt="design2">
+                                </figure>
+                                <h3 class="heading-sm mt-1">Update support documentation</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-16">Aug 16, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person7.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person-3.png" alt="user-2">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person8.png" alt="user-3">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+        
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__research">Research</span>
+                                <h3 class="heading-sm mt-2">Qualitative research planning</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-20">Aug 20, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person9.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person6.png" alt="user-2">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="tasks__list mr-1">
+                    <li class="tasks__list-title p-2 mb-2">
+                        <h2 class="heading-md">In Progress</h2>
+                        <div class="tasks__list-btns">
+                            <button class="menu-btn mr-1">
+                                <svg class="icon ellipsis">
+                                    <use href="#ellipsis"></use>
+                                </svg>
+                            </button>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </li>
+
+                    <li>
+                        <ul class="tasks__list-wrapper">
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__planning">Planning</span>
+                                <h3 class="heading-sm mt-2">Listing deliverables checklist</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-09-20">Sep 20, 2021</time>
+                                <div class="card-bottom2">
+                                    <a href="javascript:void(0)">
+                                        <svg class="icon comment"><use href="#comment"></use></svg> <span>4 Comments</span>
+                                    </a>
+                                    <a href="javascript:void(0)">
+                                        <svg class="icon attachment"><use href="#attachment"></use></svg> <span>11 files</span>
+                                    </a>
+                                </div>
+                            </li>
+        
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__research">Research</span>
+                                <h3 class="heading-sm mt-2">Qualitative research planning</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-20">Aug 20, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person9.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person6.png" alt="user-2">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+        
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__design">Design</span>
+                                <figure class="design-img mt-2">
+                                    <img src="images/design3.jpg" alt="design3">
+                                </figure>
+                                <h3 class="heading-sm mt-1">Copywriting Content</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-20">Aug 20, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person1.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person2.png" alt="user-2">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person5.png" alt="user-3">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="tasks__list">
+                    <li class="tasks__list-title p-2 mb-2">
+                        <h2 class="heading-md">Review</h2>
+                        <div class="tasks__list-btns">
+                            <button class="menu-btn mr-1">
+                                <svg class="icon ellipsis">
+                                    <use href="#ellipsis"></use>
+                                </svg>
+                            </button>
+                            <button class="add-btn">+</button>
+                        </div>
+                    </li>
+
+                    <li>
+                        <ul class="tasks__list-wrapper">
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__content">Content</span>
+                                <figure class="design-img mt-2">
+                                    <img src="images/design4.jpg" alt="design4">
+                                </figure>
+                                <h3 class="heading-sm mt-1">Design System</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-16">Aug 16, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person9.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person-3.png" alt="user-2">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+        
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__design">Design</span>
+                                <h3 class="heading-sm mt-2">High fedality UI Desktop</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-08-20">Aug 20, 2021</time>
+                                <div class="card-bottom1">
+                                    <div class="users">
+                                        <figure>
+                                            <img src="images/person4.png" alt="user-1">
+                                        </figure>
+                                        <figure>
+                                            <img src="images/person6.png" alt="user-2">
+                                        </figure>
+                                    </div>
+                                    <div class="card-bottom1-right">
+                                        <svg class="icon check-icon">
+                                            <use href="#check-icon"></use>
+                                        </svg>
+                                        <span>0/8</span>
+                                    </div>
+                                </div>
+                            </li>
+        
+                            <li class="tasks__list-card mb-2">
+                                <span class="card-title__content">Content</span>
+                                <h3 class="heading-sm mt-2">Listing deliverables checklist</h3>
+                                <h4 class="heading-xsm">Create content for peceland App</h4>
+                                <time datetime="2021-09-20">Sep 20, 2021</time>
+                                <div class="card-bottom2">
+                                    <a href="javascript:void(0)">
+                                        <svg class="icon comment"><use href="#comment"></use></svg> <span>4 Comments</span>
+                                    </a>
+                                    <a href="javascript:void(0)">
+                                        <svg class="icon attachment"><use href="#attachment"></use></svg> <span>11 files</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="chat pt-3 pb-3 pl-4 pr-4">
+            <div class="chat__header mb-2">
+                <h3 class="chat__header-title">Member <span>(25)</span></h3>
+                <a href="javascript:void(0)" class="view">View All</a>
+            </div>
+
+            <div class="chat__users mb-4">
+                <a href="javascript:void(0)" class="chat__users-user">
+                    <img src="images/person10.png" alt="user-1">
+                </a>
+                <a href="javascript:void(0)" class="chat__users-user">
+                    <img src="images/person6.png" alt="user-2">
+                </a>
+                <a href="javascript:void(0)" class="chat__users-user">
+                    <img src="images/person4.png" alt="user-3">
+                </a>
+                <a href="javascript:void(0)" class="chat__users-user">
+                    <img src="images/person5.png" alt="user-4">
+                </a>
+                <a href="javascript:void(0)" class="chat__users-user">
+                    <img src="images/person2.png" alt="user-5">
+                </a>
+                <a href="javascript:void(0)" class="chat__users-user">
+                    <img src="images/person8.png" alt="user-6">
+                </a>
+            </div>
+
+            <div class="chat__gc">
+                <h3 class="chat__gc-title mb-2">Group Chat</h3>
+                <div class="chat__gc-box mb-2">
+                    <div class="chat-msg mb-3">
+                        <figure class="mr-1">
+                            <img src="images/person10.png" alt="user-1">
+                        </figure>
+                        <div class="chat-text">
+                            <p class="p-1">Hello!</p>
+                            <span>08.00 am</span>
+                        </div>
+                    </div>
+
+                    <div class="chat-msg-user mb-3">
+                        <div class="chat-text">
+                            <p class="p-1">Hi, everyone!</p>
+                            <span><svg class="icon seen-icon"><use href="#seen-icon"></use></svg> 08.01 am</span>
+                        </div>
+                        <figure>
+                            <img src="images/person6.png" alt="user-2">
+                        </figure>
+                    </div>
+
+                    <div class="chat-msg mb-3">
+                        <figure class="mr-1">
+                            <img src="images/person4.png" alt="user-3">
+                        </figure>
+                        <div class="chat-text">
+                            <p class="p-1">How are you, What did you do everyone</p>
+                            <span>08.03 am</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-msg">
+                        <figure class="mr-1">
+                            <img src="images/person5.png" alt="user-4">
+                        </figure>
+                        <div class="chat-text">
+                            <p class="p-1">Good</p>
+                            <span>08.05 am</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat__gc-input">
+                    <input type="text" placeholder="write here..." class="p-2 mr-2">
+                    <button class="mic-btn mr-1">
+                        <svg class="icon microphone">
+                            <use href="#microphone"></use>
+                        </svg>
+                    </button>
+                    <button class="menu">
+                        <svg class="icon ellipsis">
+                            <use href="#ellipsis"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="svg-icons"></div>
+</body>
+</html>

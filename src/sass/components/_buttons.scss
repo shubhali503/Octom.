@@ -1,0 +1,30 @@
+.menu-btn{
+    background-color: transparent;
+}
+
+.add-btn{
+    background-color: #E8EAFF;
+    border-radius: 7px;
+    color: #6772FE;
+    font-size: 23px;
+    font-weight: 500;
+    vertical-align: middle;
+
+    &:hover{
+        background-color: darken(#E8EAFF, 10%);
+    }
+}
+
+.add-btn-rounded{
+    border: 1px dashed #D9E0E8;
+    border-radius: 50%;
+    background-color: #EDF2F8;
+    color: #5D68FE;
+    font-weight: 500;
+    font-size: 18px;
+    vertical-align: middle;
+
+    &:hover{
+        background-color: darken(#EDF2F8, 10%);
+    }
+}
