@@ -21,3 +21,9 @@ $sides: (top, right, bottom, left);
         padding: $val;
     }
 }
+
+.overflow-ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

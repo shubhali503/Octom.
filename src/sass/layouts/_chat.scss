@@ -5,7 +5,7 @@
     position: fixed;
     right: 0;
     top: 83px;
-    z-index: 100;
+    // z-index: 100;
 
     &__header{
         display: flex;
@@ -30,9 +30,7 @@
     }
 
     &__users{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flexCenter(space-between, center);
 
         &-user{
             display: inline-block;

@@ -10,10 +10,9 @@
 <body>
     <aside class="sidebar">
         <a href="javascript:void(0)" class="company-logo mt-2 mb-2 ml-1 mr-1">
-            <!-- <svg class="icon octom-logo">
+            <svg class="icon octom-logo">
                 <use href="#octom-logo"></use>
-            </svg> -->
-            <img src="images/octom-logo.png" alt="octom-logo">
+            </svg>
         </a>
         <div class="side-scroll">
             <a href="javascript:void(0)" class="side-scroll__link mb-3">
@@ -65,16 +64,57 @@
                 </svg>
             </button>
             <div class="header__profile-user p-1">
-                <a href="javascript:void(0)" class="mr-2"><img src="images/header-profile.png" alt="profile-img"></a>
+                <a href="javascript:void(0)" class="user-img mr-2"><img src="images/header-profile.png" alt="profile-img"></a>
                 <svg class="icon chevron">
                     <use href="#chevron"></use>
                 </svg>
+
+                <div class="header__profile-dropdown p-2">
+                    <ul class="header__profile-list">
+    
+                        <li class="user-info">
+                            <figure class="mr-2">
+                                <img src="images/header-profile.png" alt="profile-img">
+                            </figure>
+                            <div>
+                                <h2 class="user-name overflow-ellipsis">User Name<span class="tooltip tooltip-username"></span></h2>
+                                <a href="javascript:void(0)" class="user-email overflow-ellipsis">username@gmail.com<span class="tooltip tooltip-email"></span></a>
+                            </div>
+                        </li>
+                        <div class="hr"></div>
+                        <li class="option">
+                            <a href="javascript:void(0)">Profile</a>
+                        </li>
+                        <li class="option">
+                            <a href="javascript:void(0)">Activity</a>
+                        </li>
+                        <li class="option">
+                            <a href="javascript:void(0)">Cards</a>
+                        </li>
+                        <li class="option">
+                            <a href="javascript:void(0)">Settings</a>
+                        </li>
+                        <div class="hr"></div>
+                        <li class="option">
+                            <a href="javascript:void(0)">Help</a>
+                        </li>
+                        <li class="option">
+                            <a href="javascript:void(0)">Shortcuts</a>
+                        </li>
+                        <div class="hr"></div>
+                        <li class="option">
+                            <a href="javascript:void(0)">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
+            
         </div>
     </header>
 
     <main class="main-content">
-        <div class="tasks pt-5 pl-3 pr-3 pb-8">
+        <div class="tasks pt-5 pl-3 pr-3 pb-5">
 
             <div class="tasks__header">
                 <h1 class="heading-lg"><img src="images/fire.png" alt="" class="mr-1">Task</h1>

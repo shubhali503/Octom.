@@ -2,9 +2,7 @@
     width: calc(100% - 300px);
 
     &__header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flexCenter(space-between, center);
 
         h1{
             img{
@@ -55,13 +53,11 @@
         &-title{
             background-color: white;
             border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            @include flexCenter(space-between, center);
         }
 
         &-wrapper{
-            height: 58vh;
+            height: 51vh;
             overflow-y: scroll;
         }
     }

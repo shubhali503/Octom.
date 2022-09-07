@@ -71,9 +71,7 @@
 
     .card-bottom2{
         margin-top: 24px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flexCenter(space-between, center);
 
         a{
             font-size: 10px;
