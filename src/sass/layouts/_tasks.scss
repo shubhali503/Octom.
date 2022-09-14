@@ -1,5 +1,10 @@
 .tasks{
     width: calc(100% - 300px);
+    transition: all 0.3s ease;
+
+    &.expand{
+        width: calc(100% - 32px);
+    }
 
     &__header{
         @include flexCenter(space-between, center);
@@ -61,4 +66,5 @@
             overflow-y: scroll;
         }
     }
+
 }

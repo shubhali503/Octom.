@@ -1,4 +1,5 @@
-%card-title{
+.card-label{
+    background-color: #b3bac5;
     border-radius: 4px;
     color: white;
     font-size: 12px;
@@ -6,22 +7,18 @@
     padding: 2px 8px;
 }
 
-.card-title__design{
-    @extend %card-title;
+.card-label-purple{
     background-color: #5051F9;
 }
 
-.card-title__research{
-    @extend %card-title;
+.card-label-blue{
     background-color: #1EA7FF;
 }
 
-.card-title__planning{
-    @extend %card-title;
+.card-label-orange{
     background-color: #E97342;
 }
 
-.card-title__content{
-    @extend %card-title;
+.card-label-yellow{
     background-color: #F59E0B;
 }

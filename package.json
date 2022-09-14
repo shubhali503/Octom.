@@ -1,5 +1,5 @@
 {
-  "name": "Reality-Properties",
+  "name": "Octom",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@babel/preset-env": "^7.19.0",
     "autoprefixer": "^10.4.8",
+    "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.13",
     "html-loader": "^4.1.0",

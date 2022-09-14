@@ -5,7 +5,29 @@
     position: fixed;
     right: 0;
     top: 83px;
+    transition: all 0.3s ease;
     // z-index: 100;
+
+    .collapse-btn{
+        background-color: white;
+        border: 1px solid #768396;
+        border-radius: 50%;
+        padding: 4px 8px;
+        position: absolute;
+        left: -12px;
+
+        &.collapse{
+
+            .chevron-right{
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &.collapse{
+        width: 0;
+        padding-right: 0;
+    }
 
     &__header{
         display: flex;
@@ -152,4 +174,5 @@
             }
         }
     }
+
 }

@@ -1,0 +1,99 @@
+.new-card{
+    display: none;
+    position: absolute;
+    top: 43%;
+    left: 45%;
+    transform: translate(-43%, -45%);
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 5px;
+    z-index: 1000;
+
+    &__header{
+        @include flexCenter(space-between, center);
+
+        .close-btn{
+            background-color: transparent;
+        }
+    }
+
+    &__info{
+
+        label{
+            font-size: 14px;
+        }
+
+        select{
+            padding: 10px;
+            outline: none;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 158px;
+            color: #768396;
+            background-color: #f3f5f7;
+        }
+
+        .c-label-btn{
+            display: block;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #6772fe;
+            background-color: #e8eaff;
+            font-weight: 500;
+
+            &:hover{
+                // background-color: darken(#e8eaff, 10%);
+                background-color: #5051F9;
+                color: white;
+            }
+        }
+
+        input{
+            padding: 10px;
+            outline: none;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #768396;
+            background-color: #f3f5f7;
+        }
+
+        .card-btns{
+
+            button{
+                padding: 10px 15px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-weight: 500;
+                color: #000000;
+                // color: #232360;
+            }
+
+            .save-btn{
+                // background-color: #b5e48c;
+                background-color: #5051F9;
+                color: white;
+
+                &:hover{
+                    background-color: darken(#5051F9, 10%);
+                }
+            }
+
+            .cancel-btn{
+                // background-color: #ff9b85;
+                background-color: darken(#f3f5f7, 10%);
+                // color: #768396;
+                color: #292c31;
+
+                &:hover{
+                    background-color: darken(#f3f5f7, 20%);
+                }
+            }
+        }
+    }
+
+    &.show{
+        display: block;
+    }
+}

@@ -39,31 +39,41 @@
     &__profile{
 
         &-notif{
-            @extend .header__search-btn;
-            position: relative;
+            vertical-align: middle;
+            background-color: transparent;
+            border-radius: 25px;
+            padding: 8px 10px;
 
-            &::after{
-                content: "2";
-                position: absolute;
-                top: -3px;
-                right: -3px;
-                width: 11px;
-                height: 10px;
-                background-color: #5150F9;
-                color: white;
-                border-radius: 50%;
-                font-size: 8px;
-                font-weight: 700;
+            .bell-icon{
+                position: relative;
+
+                // &::after{
+                //     content: "2";
+                //     position: absolute;
+                //     top: -3px;
+                //     right: -3px;
+                //     width: 11px;
+                //     height: 10px;
+                //     background-color: #5150F9;
+                //     color: white;
+                //     border-radius: 50%;
+                //     font-size: 8px;
+                //     font-weight: 700;
+                // }
             }
 
-            &:hover svg path{
-                fill: #5150F9
+            &:hover{
+                background-color: #F3F7FA;
+
+                .bell-icon{
+                    fill: #5150F9;
+                }
             }
         }
 
         &-user{
             display: inline-block;
-            border-radius: 7px;
+            border-radius: 25px;
 
             .user-img{
                 display: inline-block;
@@ -76,14 +86,14 @@
                 }
             }
 
-            .chevron{
+            .chevron-down{
                 transition: 0.3s;
             }
 
-            // &:hover{
-            //     cursor: pointer;
-            //     background-color: #F3F7FA;
-            // }
+            &:hover{
+                cursor: pointer;
+                background-color: #F3F7FA;
+            }
         }
 
         &-dropdown{
@@ -92,9 +102,9 @@
             position: absolute;
             top: 90px;
             right: 2px;
-            // background-color: darken(#F3F7FA, 4%);
             background-color: white;
             border-radius: 5px;
+            box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
         }
 
@@ -116,15 +126,16 @@
                         background: #292c31;
                         color: #fff;
                         padding: 10px;
-                        z-index: 9999;
                         border-radius: 5px;
                         font-size: 10px;
-                        // min-width: 150px;
+                        max-width: 170px;
                         text-align: center;
                         position: absolute;
                         left: 0px;
                         // top: -45px;
                         display: none;
+                        white-space: normal;
+                        word-wrap: break-word;
                     }
 
                     
@@ -143,21 +154,6 @@
                             }
                         }
                     }
-
-                    // .tooltiptext {
-                    //     visibility: hidden;
-                    //     background-color: black;
-                    //     color: #fff;
-                    //     font-size: 10px;
-                    //     text-align: center;
-                    //     padding: 5px;
-                    //     border-radius: 3px;
-                    //     position: absolute;
-                    //     bottom: 100%;
-                    //     left: 50%;
-                    //     margin-left: -60px;
-                    //     z-index: 1;
-                    //   }
 
                     .user-email{
                         display: block;
@@ -211,7 +207,7 @@
             cursor: pointer;
             background-color: #F3F7FA;
 
-            .chevron{
+            .chevron-down{
                 transform: rotate(180deg);
             }
 

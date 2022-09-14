@@ -1,0 +1,208 @@
+{
+  "tasks": [
+    {
+      "stage": "backlog",
+      "label": "Design",
+      "imageUrl": "images/design1.jpg",
+      "title": "Create styleguide foundation",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 20, 2021",
+      "userUrls": [
+        "images/person1.png",
+        "images/person2.png",
+        "images/person5.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "backlog",
+      "label": "Research",
+      "imageUrl": "",
+      "title": "Copywriting Content",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 20, 2021",
+      "userUrls": [
+        "images/person4.png",
+        "images/person6.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "backlog",
+      "label": "Planning",
+      "imageUrl": "",
+      "title": "Update requiment list",
+      "desc": "Create content for peceland App",
+      "createdAt": "Sep 20, 2021",
+      "userUrls": [],
+      "totalSubTasks": "",
+      "completedSubTasks": "",
+      "comments": [
+        "comment1",
+        "comment2"
+      ],
+      "files": [
+        "file1",
+        "file2"
+      ]
+    },
+    {
+      "stage": "todo",
+      "label": "Research",
+      "imageUrl": "",
+      "title": "auditing information architecture",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 20, 2021",
+      "userUrls": [
+        "images/person4.png",
+        "images/person6.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "todo",
+      "label": "Content",
+      "imageUrl": "images/design2.jpg",
+      "title": "Update support documentation",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 16, 2021",
+      "userUrls": [
+        "images/person7.png",
+        "images/person-3.png",
+        "images/person8.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "todo",
+      "label": "Research",
+      "imageUrl": "",
+      "title": "Qualitative research planning",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 20, 2021",
+      "userUrls": [
+        "images/person9.png",
+        "images/person6.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "in progress",
+      "label": "Planning",
+      "imageUrl": "",
+      "title": "Listing deliverables checklist",
+      "desc": "Create content for peceland App",
+      "createdAt": "Sep 20, 2021",
+      "userUrls": [],
+      "totalSubTasks": "",
+      "completedSubTasks": "",
+      "comments": [
+        "comment1",
+        "comment2"
+      ],
+      "files": [
+        "file1",
+        "file2"
+      ]
+    },
+    {
+      "stage": "in progress",
+      "label": "Research",
+      "imageUrl": "",
+      "title": "Qualitative research planning",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 20, 2021",
+      "userUrls": [
+        "images/person9.png",
+        "images/person6.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "in progress",
+      "label": "Design",
+      "imageUrl": "images/design3.jpg",
+      "title": "Copywriting Content",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 20, 2021",
+      "userUrls": [
+        "images/person1.png",
+        "images/person2.png",
+        "images/person5.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "review",
+      "label": "Content",
+      "imageUrl": "images/design4.jpg",
+      "title": "Design System",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 16, 2021",
+      "userUrls": [
+        "images/person9.png",
+        "images/person-3.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "review",
+      "label": "Design",
+      "imageUrl": "",
+      "title": "High fedality UI Desktop",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 20, 2021",
+      "userUrls": [
+        "images/person4.png",
+        "images/person6.png"
+      ],
+      "totalSubTasks": 8,
+      "completedSubTasks": 0,
+      "comments": [],
+      "files": []
+    },
+    {
+      "stage": "review",
+      "label": "Content",
+      "imageUrl": "",
+      "title": "Listing deliverables checklist",
+      "desc": "Create content for peceland App",
+      "createdAt": "Aug 20, 2021",
+      "userUrls": [],
+      "totalSubTasks": "",
+      "completedSubTasks": "",
+      "comments": [
+        "comment1",
+        "comment2"
+      ],
+      "files": [
+        "file1",
+        "file2"
+      ]
+    }
+  ]
+}
