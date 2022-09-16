@@ -1,4 +1,5 @@
 .new-card{
+    width: 400px;
     display: none;
     position: absolute;
     top: 43%;
@@ -19,44 +20,137 @@
 
     &__info{
 
+        &-label{
+            position: relative;
+            @include flexCenter(space-between, center);
+
+            .label-select{
+                padding: 10px;
+                width: 50%;
+                background-color: #f3f5f7;
+                color: #768396;
+                border-radius: 5px;
+                font-size: 14px;
+                @include flexCenter(space-between, center);
+                cursor: pointer;
+
+                svg{
+                    transition: 0.3s;
+                }
+            }
+
+            .selected-label{
+                // background-color: #5051F9;
+                border-radius: 5px;
+                padding: 8px;
+                font-size: 12px;
+                color: white;
+                display: none;
+
+                .remove-btn{
+                    background-color: transparent;
+
+                    .close-icon{
+                        width: 7px;
+                        height: 7px;
+                        fill: white;
+                    }
+                }
+            }
+
+            .label-options{
+                background-color: #f3f5f7;
+                padding: 5px;
+                font-size: 14px;
+                width: 50%;
+                display: none;
+                position: absolute;
+                top: 105%;
+                left: 0;
+                height: 0px;
+                overflow-y: hidden;
+                text-align: center;
+                border-radius: 5px;
+                z-index: 5;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                .label{
+                    margin: 8px 0;
+                    padding: 6px 0;
+                    color: white;
+                    border-radius: 5px;
+                }
+            }
+
+            &.active{
+
+                .label-select svg{
+                    transform: rotate(180deg);
+                }
+
+                .label-options{
+                    display: block;
+                    height: fit-content;
+                    overflow-y: auto;
+                }
+            }
+        }
+
+        // .c-label-btn{
+        //     display: block;
+        //     width: 100%;
+        //     padding: 10px;
+        //     cursor: pointer;
+        //     border-radius: 5px;
+        //     color: #6772fe;
+        //     background-color: #e8eaff;
+        //     font-weight: 500;
+
+        //     &:hover{
+        //         background-color: #5051F9;
+        //         color: white;
+        //     }
+        // }
+
+        .new-card-input{
+            @include flexCenter(space-between, center);
+        }
+
+        .side-icon{
+            width: 17px;
+            height: 17px;
+            vertical-align: middle;
+        }
+
         label{
             font-size: 14px;
         }
 
-        select{
+        input, textarea{
             padding: 10px;
             outline: none;
             border-radius: 5px;
             font-size: 14px;
-            width: 158px;
             color: #768396;
             background-color: #f3f5f7;
-        }
+            flex: 1;
+            font-family: inherit;
 
-        .c-label-btn{
-            display: block;
-            width: 100%;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            color: #6772fe;
-            background-color: #e8eaff;
-            font-weight: 500;
-
-            &:hover{
-                // background-color: darken(#e8eaff, 10%);
-                background-color: #5051F9;
-                color: white;
+            &:focus{
+                border: 1px solid darken(#f3f5f7, 40%);
+                color: black;
             }
         }
 
-        input{
-            padding: 10px;
-            outline: none;
-            border-radius: 5px;
+        textarea{
+            resize: none;
+        }
+
+        ::placeholder{
+            font-family: inherit;
             font-size: 14px;
             color: #768396;
-            background-color: #f3f5f7;
         }
 
         .card-btns{
@@ -67,11 +161,9 @@
                 border-radius: 5px;
                 font-weight: 500;
                 color: #000000;
-                // color: #232360;
             }
 
             .save-btn{
-                // background-color: #b5e48c;
                 background-color: #5051F9;
                 color: white;
 
@@ -81,9 +173,7 @@
             }
 
             .cancel-btn{
-                // background-color: #ff9b85;
                 background-color: darken(#f3f5f7, 10%);
-                // color: #768396;
                 color: #292c31;
 
                 &:hover{
@@ -95,5 +185,41 @@
 
     &.show{
         display: block;
+    }
+}
+
+.default-bg-color{
+    background-color: #f3f5f7;
+}
+
+.label-design{
+    background-color: #5051F9;
+
+    &:hover{
+        background-color: darken(#5051F9, 7%);
+    }
+}
+
+.label-research{
+    background-color: #1EA7FF;
+
+    &:hover{
+        background-color: darken(#1EA7FF, 7%);
+    }
+}
+
+.label-planning{
+    background-color: #E97342;
+
+    &:hover{
+        background-color: darken(#E97342, 7%);
+    }
+}
+
+.label-content{
+    background-color: #F59E0B;
+
+    &:hover{
+        background-color: darken(#F59E0B, 7%);
     }
 }

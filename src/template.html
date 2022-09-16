@@ -19,31 +19,37 @@
                 <svg class="icon side-icon">
                     <use href="#side-icon1"></use>
                 </svg>
+                <span class="tooltip side-link-tooltip">Dashboard</span>
             </a>
             <a href="javascript:void(0)" class="side-scroll__link mb-3">
                 <svg class="icon side-icon">
                     <use href="#side-icon2"></use>
                 </svg>
+                <span class="tooltip side-link-tooltip">Timeline</span>
             </a>
-            <a href="javascript:void(0)" class="side-scroll__link mb-3">
+            <a href="javascript:void(0)" class="side-scroll__link mb-3 active">
                 <svg class="icon side-icon">
                     <use href="#side-icon3"></use>
                 </svg>
+                <span class="tooltip side-link-tooltip">Task</span>
             </a>
             <a href="javascript:void(0)" class="side-scroll__link mb-3">
                 <svg class="icon side-icon">
                     <use href="#side-icon4"></use>
                 </svg>
+                <span class="tooltip side-link-tooltip">Settings</span>
             </a>
             <a href="javascript:void(0)" class="side-scroll__link mb-3">
                 <svg class="icon side-icon">
                     <use href="#side-icon5"></use>
                 </svg>
+                <span class="tooltip side-link-tooltip">Message</span>
             </a>
             <a href="javascript:void(0)" class="side-scroll__link">
                 <svg class="icon side-icon">
                     <use href="#side-icon6"></use>
                 </svg>
+                <span class="tooltip side-link-tooltip">Files</span>
             </a>
         </div>
     </aside>
@@ -112,7 +118,7 @@
     </header>
 
     <main class="main-content">
-        <div class="tasks pt-5 pl-3 pr-3 pb-5">
+        <div class="tasks pt-5 pl-3 pr-3 pb-2">
 
             <div class="tasks__header">
                 <h1 class="heading-lg"><img src="./assets/images/fire.png" alt="" class="mr-1">Task</h1>
@@ -537,10 +543,57 @@
                     </button>
                 </div>
                 <hr>
-                <div class="new-card__info mt-2">
-                    <div class="mb-2">
-                        <label for="card-title" class="heading-sm mr-2">Card Title :</label>
+                <div class="new-card__info mt-3">
+                    <div class="new-card__info-label mb-3">
+                        <div class="label-select">
+                            <span class="label-select__span">Choose a Label</span>
+                            <svg class="icon chevron-down">
+                                <use href="#chevron-down"></use>
+                            </svg>
+                        </div>
+
+                        <div class="selected-label">
+                            <span class="selected-label__span mr-1"></span>
+                            <button class="remove-btn">
+                                <svg class="icon close-icon"><use href="#close-icon"></use></svg>
+                            </button>
+                        </div>
+
+                        <ul class="label-options">
+                            <li class="label label-design">Design</li>
+                            <li class="label label-research">Research</li>
+                            <li class="label label-planning">Planning</li>
+                            <li class="label label-content">Content</li>
+                        </ul>
+                    </div>
+
+                    <div class="new-card-input mb-3">
+                        <div>
+                            <svg class="icon side-icon mr-1"><use href="#side-icon3"></use></svg>
+                            <label for="image-url" class="heading-sm mr-2">Image URL :</label>
+                        </div>
+                        <input type="text" id="image-url" placeholder="Enter image url...">
+                    </div>
+
+                    <div class="new-card-input mb-3">
+                        <div>
+                            <svg class="icon side-icon mr-1"><use href="#side-icon3"></use></svg>
+                            <label for="card-title" class="heading-sm mr-2">Card Title :</label>
+                        </div>
                         <input type="text" id="card-title" placeholder="Enter card title...">
+                    </div>
+
+                    <div class="new-card-input mb-5">
+                        <div class="desc-div">
+                            <svg class="icon side-icon mr-1"><use href="#side-icon3"></use></svg>
+                            <label for="card-desc" class="heading-sm mr-2">Description :</label>
+                        </div>
+                        <textarea name="" id="card-desc" cols="" rows="3" placeholder="Enter card description..."></textarea>
+                    </div>
+
+                    <div class="card-btns">
+                        <button class="save-btn mr-1">Save</button>
+                        <button class="cancel-btn">Cancel</button>
                     </div>
                 </div>
             </div>

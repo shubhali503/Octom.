@@ -594,6 +594,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+if (localStorage.getItem("isInitialDataLoaded") == "true") {
+  _data_json__WEBPACK_IMPORTED_MODULE_1__ = JSON.parse(localStorage.getItem("jsonData"));
+}
+
+if (!localStorage.getItem("isInitialDataLoaded")) {
+  localStorage.setItem("jsonData", JSON.stringify(_data_json__WEBPACK_IMPORTED_MODULE_1__));
+  localStorage.setItem("isInitialDataLoaded", true);
+}
+
 function requireAll(r) {
   r.keys().forEach(r);
 }
@@ -606,33 +615,127 @@ fetch("https://mitopeci.sirv.com/sprite.svg").then(function (res) {
 });
 var headerProfileUser = document.querySelector(".header__profile-user");
 var headerDropdown = document.querySelector(".header__profile-dropdown");
+var tasksDiv = document.querySelector(".tasks");
+var chatDiv = document.querySelector(".chat");
+var collapseBtn = document.querySelector(".collapse-btn");
 var addBtns = document.querySelectorAll(".add-btn");
 var newCard = document.querySelector(".new-card");
 var closeBtn = document.querySelector(".close-btn");
+var overlay = document.querySelector(".overlay");
+var selectLabelWrapper = document.querySelector(".new-card__info-label");
+var labelSelect = document.querySelector(".label-select");
+var labelSelectSpan = document.querySelector(".label-select__span");
+var labels = document.querySelectorAll(".label");
+var selectedLabel = document.querySelector(".selected-label");
+var selectedLabelSpan = document.querySelector(".selected-label__span");
+var removeBtn = document.querySelector(".remove-btn");
+var imageUrlInput = document.getElementById("image-url");
+var cardTitleInput = document.getElementById("card-title");
+var cardDescInput = document.getElementById("card-desc");
+var saveBtn = document.querySelector(".save-btn");
+var cancelBtn = document.querySelector(".cancel-btn");
+displayCards(_data_json__WEBPACK_IMPORTED_MODULE_1__); //displaying all cards of the lists
+
 headerProfileUser.addEventListener("click", function () {
   return headerProfileUser.classList.toggle("active");
 });
-addBtns.forEach(function (addBtn) {
+collapseBtn.addEventListener("click", function () {
+  chatDiv.classList.toggle("collapse");
+  collapseBtn.classList.toggle("collapse");
+  tasksDiv.classList.toggle("expand");
+});
+var clickedButtonIndex = -1;
+addBtns.forEach(function (addBtn, index) {
   addBtn.addEventListener("click", function () {
-    // addBtn.classList.toggle("active");
     newCard.classList.toggle("show");
-    document.addEventListener('click', function (e) {
-      if (!newCard.contains(e.target) && !addBtn.contains(e.target)) {
-        newCard.classList.remove("show");
-      }
-    });
+    newCard.listIndex = index;
+    overlay.style.display = "block";
+    clickedButtonIndex = index;
   });
 });
+
+function clearInputs() {
+  labelSelectSpan.innerText = "Choose a Label";
+  selectedLabel.style.display = "none";
+  imageUrlInput.value = "";
+  cardTitleInput.value = "";
+  cardDescInput.value = "";
+}
+
 closeBtn.addEventListener("click", function () {
-  return newCard.classList.remove("show");
+  newCard.classList.remove("show");
+  overlay.style.display = "none";
+  clearInputs();
+});
+labelSelect.addEventListener("click", function () {
+  return selectLabelWrapper.classList.toggle("active");
+});
+labels.forEach(function (label) {
+  label.addEventListener("click", function () {
+    labelSelectSpan.innerText = label.innerText;
+    selectLabelWrapper.classList.remove("active");
+    var bgColorClass = "label-".concat(label.innerText.toLowerCase());
+    selectedLabel.style.display = "block";
+    selectedLabel.classList.add(bgColorClass);
+    selectedLabelSpan.innerText = labelSelectSpan.innerText;
+  });
+});
+removeBtn.addEventListener("click", function () {
+  selectedLabel.style.display = "none";
+  labelSelectSpan.innerText = "Choose a Label";
 });
 document.addEventListener('click', function (e) {
   if (!headerDropdown.contains(e.target) && !headerProfileUser.contains(e.target)) {
     headerProfileUser.classList.remove("active");
-  } // if (!newCard.contains(e.target) && !addBtn.contains(e.target)) {
-  //     newCard.classList.toggle("show");
-  // }
+  }
 
+  var clickedAddButton = addBtns[clickedButtonIndex];
+
+  if (!newCard.contains(e.target) && !clickedAddButton.contains(e.target)) {
+    newCard.classList.remove("show");
+    overlay.style.display = "none";
+    clearInputs();
+  }
+});
+saveBtn.addEventListener("click", function () {
+  var newCardLabel = selectedLabelSpan.innerText;
+  var newCardImageUrl = imageUrlInput.value;
+  var newCardTitle = cardTitleInput.value;
+  var newCardDesc = cardDescInput.value;
+  var date = new Date();
+  var month = date.toLocaleString('default', {
+    month: 'short'
+  });
+  var newCardDate = "".concat(month, " ").concat(date.getDate(), ", ").concat(date.getFullYear());
+  var newTask = {
+    "label": newCardLabel,
+    "imageUrl": newCardImageUrl,
+    "title": newCardTitle,
+    "desc": newCardDesc,
+    "createdAt": newCardDate
+  };
+
+  if (newCard.listIndex == 0) {
+    newTask.stage = "backlog";
+  } else if (newCard.listIndex == 1) {
+    newTask.stage = "todo";
+  } else if (newCard.listIndex == 2) {
+    newTask.stage = "in progress";
+  } else {
+    newTask.stage = "review";
+  }
+
+  _data_json__WEBPACK_IMPORTED_MODULE_1__.tasks.push(newTask);
+  newCard.classList.remove("show");
+  overlay.style.display = "none";
+  displayCards(_data_json__WEBPACK_IMPORTED_MODULE_1__);
+  localStorage.setItem("jsonData", JSON.stringify(_data_json__WEBPACK_IMPORTED_MODULE_1__));
+  clearInputs();
+});
+cancelBtn.addEventListener("click", function () {
+  newCard.classList.remove("show");
+  overlay.style.display = "none";
+  clearInputs();
 }); // ----------- Populating and Displaying Cards using Json File-----------------
 
 function displayCards(jsonData) {
@@ -658,184 +761,63 @@ function createLists(backlogTasks, toDoTasks, inProgressTasks, reviewTasks) {
   var inProgressList = lists[2];
   var reviewList = lists[3];
   backlogTasks.forEach(function (data) {
-    var backlogCard = createCard(data); // backlogList.appendChild(backlogCard);
-
+    var backlogCard = createCard(data);
     backlogList.innerHTML += backlogCard;
   });
   toDoTasks.forEach(function (data) {
-    var toDoCard = createCard(data); // toDoList.appendChild(toDoCard);
-
+    var toDoCard = createCard(data);
     toDoList.innerHTML += toDoCard;
   });
   inProgressTasks.forEach(function (data) {
-    var inProgressCard = createCard(data); // inProgressList.appendChild(inProgressCard);
-
+    var inProgressCard = createCard(data);
     inProgressList.innerHTML += inProgressCard;
   });
   reviewTasks.forEach(function (data) {
-    var reviewCard = createCard(data); // reviewList.appendChild(reviewCard);
-
+    var reviewCard = createCard(data);
     reviewList.innerHTML += reviewCard;
   });
-} // function createCard(data){
-//   const li = document.createElement("li");
-//   const cardLabel = document.createElement("span");
-//   const cardFigure = document.createElement("figure");
-//   const cardImage = document.createElement("img");
-//   const cardTitle = document.createElement("h3");
-//   const cardDesc = document.createElement("h4");
-//   const cardDate = document.createElement("time");
-//   const cardBottom1 = document.createElement("div");
-//   const usersDiv = document.createElement("div");
-//   const cardBottom1Right = document.createElement("div");
-//   const checkSvg = document.createElement("svg");
-//   const checkUse = document.createElement("use");
-//   const checklistSpan = document.createElement("span");
-//   const cardBottom2 = document.createElement("div");
-//   const commentsLink = document.createElement("a");
-//   const commentSvg = document.createElement("svg");
-//   const commentUse = document.createElement("use");
-//   const commentsSpan = document.createElement("span");
-//   const filesLink = document.createElement("a");
-//   const attachmentSvg = document.createElement("svg");
-//   const attachmentUse = document.createElement("use");
-//   const filesSpan = document.createElement("span");
-//   li.classList.add("tasks__list-card", "mb-2");
-//   cardLabel.classList.add("card-label");
-//   if(data.label == "Design"){
-//     cardLabel.classList.add("card-label-purple");
-//   }
-//   else if(data.label == "Research"){
-//     cardLabel.classList.add("card-label-blue");
-//   }
-//   else if(data.label == "Planning"){
-//     cardLabel.classList.add("card-label-orange");
-//   }
-//   else{
-//     cardLabel.classList.add("card-label-yellow");
-//   }
-//   cardLabel.innerText = data.label;
-//   li.appendChild(cardLabel);
-//   if(data.imageUrl != ""){
-//     cardFigure.classList.add("design-img", "mt-2");
-//     cardImage.src = data.imageUrl;
-//     cardFigure.appendChild(cardImage);
-//     li.appendChild(cardFigure);
-//     cardTitle.classList.add("mt-1");
-//   }
-//   else{
-//     cardTitle.classList.add("mt-2");
-//   }
-//   cardTitle.classList.add("heading-sm");
-//   cardTitle.innerText = data.title;
-//   li.appendChild(cardTitle);
-//   cardDesc.classList.add("heading-xsm");
-//   cardDesc.innerText = data.desc;
-//   li.appendChild(cardDesc);
-//   cardDate.innerText = data.createdAt;
-//   li.appendChild(cardDate);
-//   if(data.userUrls.length !== 0){
-//     cardBottom1.classList.add("card-bottom1");
-//     usersDiv.classList.add("users");
-//     data.userUrls.forEach(userUrl => {
-//       const userFigure = document.createElement("figure");
-//       const userImage = document.createElement("img");
-//       userImage.src = userUrl;
-//       userFigure.appendChild(userImage);
-//       usersDiv.appendChild(userFigure);
-//     });
-//     cardBottom1Right.classList.add("card-bottom1-right");
-//     checkSvg.classList.add("icon", "check-icon");
-//     checkUse.setAttribute("href", "#check-icon");
-//     checkSvg.appendChild(checkUse);
-//     checklistSpan.innerText = data.completedSubTasks + "/" + data.totalSubTasks;
-//     cardBottom1Right.appendChild(checkSvg);
-//     cardBottom1Right.appendChild(checklistSpan);
-//     cardBottom1.appendChild(usersDiv);
-//     cardBottom1.appendChild(cardBottom1Right);
-//     li.appendChild(cardBottom1);
-//   }
-//   else {
-//     cardBottom2.classList.add("card-bottom2");
-//     commentsLink.setAttribute("href", "javascript:void(0)");
-//     commentSvg.classList.add("icon", "comment");
-//     commentUse.setAttribute("href", "#comment");
-//     commentSvg.appendChild(commentUse);
-//     commentsSpan.innerText = data.comments.length + " comments";
-//     commentsLink.appendChild(commentSvg);
-//     commentsLink.appendChild(commentsSpan);
-//     filesLink.setAttribute("href", "javascript:void(0)");
-//     attachmentSvg.classList.add("icon", "attachment");
-//     attachmentUse.setAttribute("href", "#attachment");
-//     attachmentSvg.appendChild(attachmentUse);
-//     filesSpan.innerText = data.files.length + " files";
-//     filesLink.appendChild(attachmentSvg);
-//     filesLink.appendChild(filesSpan);
-//     cardBottom2.appendChild(commentsLink);
-//     cardBottom2.appendChild(filesLink);
-//     li.appendChild(cardBottom2);
-//   }
-//   return li;
-// }
-// function createCard(data) {
-//   let li = `<li class="tasks__list-card mb-2">`;
-//   if(data.label == "Design"){
-//     li += `<span class="card-label card-label-purple">${data.label}</span>`;
-//   }
-//   else if(data.label == "Research")
-//   {
-//     li += `<span class="card-label card-label-blue">${data.label}</span>`;
-//   }
-//   else if(data.label == "Planning"){
-//     li += `<span class="card-label card-label-orange">${data.label}</span>`;
-//   }
-//   else{
-//     li += `<span class="card-label card-label-yellow">${data.label}</span>`;
-//   }
-//   if(data.imageUrl !== ""){
-//     li += `<figure class="design-img mt-2">
-//       <img src="${data.imageUrl}" alt="">
-//     </figure>
-//     <h3 class="heading-sm mt-1">${data.title}</h3>`
-//   }
-//   else{
-//     li += `<h3 class="heading-sm mt-2">${data.title}</h3>`;
-//   }
-//   li += `<h4 class="heading-xsm">${data.desc}</h4>
-//   <time datetime="2021-08-20">${data.createdAt}</time>`;
-//   if(data.userUrls.length !== 0){
-//     li += `<div class="card-bottom1">
-//     <div class="users">`;
-//     data.userUrls.forEach(userUrl => {
-//       li += `<figure>
-//           <img src="${userUrl}" alt="">
-//       </figure>`;
-//     });
-//     li += `</div>
-//         <div class="card-bottom1-right">
-//             <svg class="icon check-icon">
-//                 <use href="#check-icon"></use>
-//             </svg>
-//             <span>${data.completedSubTasks}/${data.totalSubTasks}</span>
-//         </div>
-//     </div>
-//     </li>`;
-//   }
-//   else{
-//     li += `<div class="card-bottom2">
-//         <a href="javascript:void(0)">
-//             <svg class="icon comment"><use href="#comment"></use></svg> <span>${data.comments.length} Comments</span>
-//         </a>
-//         <a href="javascript:void(0)">
-//             <svg class="icon attachment"><use href="#attachment"></use></svg> <span>${data.files.length} files</span>
-//         </a>
-//     </div>`;
-//   }
-//   return li;
-// }
+}
 
+function getLabelColor(label) {
+  switch (label) {
+    case "Design":
+      return "purple";
 
-displayCards(_data_json__WEBPACK_IMPORTED_MODULE_1__);
+    case "Research":
+      return "blue";
+
+    case "Planning":
+      return "orange";
+
+    case "Content":
+      return "yellow";
+  }
+}
+
+function getCommentsDiv(data) {
+  if (data.comments && data.comments.length > 0 || data.files && data.files.length > 0) {
+    return "<div class=\"card-bottom2\">\n\t\t\t<a href=\"javascript:void(0)\">\n\t\t\t\t<svg class=\"icon comment\"><use href=\"#comment\"></use></svg> <span>".concat(data.comments.length, " Comments</span>\n\t\t\t</a>\n\t\t\t<a href=\"javascript:void(0)\">\n\t\t\t\t<svg class=\"icon attachment\"><use href=\"#attachment\"></use></svg> <span>").concat(data.files.length, " files</span>\n\t\t\t</a>\n\t\t</div>");
+  }
+
+  return "";
+}
+
+function getUsersImages(userUrl) {
+  return "<figure>\n\t\t\t\t<img src=\"".concat(userUrl, "\" alt=\"\">\n\t\t</figure>");
+}
+
+function getUsersDiv(data) {
+  if (!data.userUrls || data.userUrls.length == 0) return "";
+  return "<div class=\"card-bottom1\">\n    \t\t\t<div class=\"users\">\n\t\t\t\t\t  ".concat(data.userUrls.map(function (userUrl) {
+    return getUsersImages(userUrl);
+  }), "\n          </div>\n          <div class=\"card-bottom1-right\">\n            <svg class=\"icon check-icon\">\n              <use href=\"#check-icon\"></use>\n            </svg>\n            <span>").concat(data.completedSubTasks, "/").concat(data.totalSubTasks, "</span>\n          </div>\n        </div>");
+}
+
+function createCard(data) {
+  var li = "<li class=\"tasks__list-card mb-2\">\n    <span class=\"card-label card-label-".concat(getLabelColor(data.label), "\">").concat(data.label, "</span>\n      ").concat(data.imageUrl && data.imageUrl !== "" ? "<figure class=\"design-img mt-2\">\n         \t\t<img src=\"".concat(data.imageUrl, "\" alt=\"").concat(data.imageUrl, "\">\n    \t\t</figure>\n    \t\t<h3 class=\"heading-sm mt-1\">").concat(data.title, "</h3>") : "<h3 class=\"heading-sm mt-2\">".concat(data.title, "</h3>"), "\n\t\n\t<h4 class=\"heading-xsm\">").concat(data.desc, "</h4>\n  <time datetime=\"2021-08-20\">").concat(data.createdAt, "</time>\n\t").concat(getCommentsDiv(data), "\n\t\n\t").concat(getUsersDiv(data), "\n  \n  </li>");
+  return li;
+}
+
 var chatMsgInput = document.getElementById("chat-msg-input");
 var chatBox = document.querySelector(".chat__gc-box");
 var date = new Date();

@@ -1,6 +1,17 @@
 import '../sass/styles.scss';
 import jsonData from '../data.json';
 
+
+if(localStorage.getItem("isInitialDataLoaded") == "true"){
+  jsonData = JSON.parse(localStorage.getItem("jsonData"));
+}
+
+if(!localStorage.getItem("isInitialDataLoaded")){
+  localStorage.setItem("jsonData", JSON.stringify(jsonData));
+  localStorage.setItem("isInitialDataLoaded", true);
+}
+
+
 function requireAll(r) {
     r.keys().forEach(r);
 }
@@ -25,6 +36,22 @@ const newCard = document.querySelector(".new-card");
 const closeBtn = document.querySelector(".close-btn");
 const overlay = document.querySelector(".overlay");
 
+const selectLabelWrapper = document.querySelector(".new-card__info-label");
+const labelSelect = document.querySelector(".label-select");
+const labelSelectSpan = document.querySelector(".label-select__span");
+const labels = document.querySelectorAll(".label");
+
+const selectedLabel = document.querySelector(".selected-label");
+const selectedLabelSpan = document.querySelector(".selected-label__span");
+const removeBtn = document.querySelector(".remove-btn");
+
+const imageUrlInput = document.getElementById("image-url");
+const cardTitleInput = document.getElementById("card-title");
+const cardDescInput = document.getElementById("card-desc");
+
+const saveBtn = document.querySelector(".save-btn");
+const cancelBtn = document.querySelector(".cancel-btn");
+
 displayCards(jsonData);              //displaying all cards of the lists
 
 headerProfileUser.addEventListener("click", () => headerProfileUser.classList.toggle("active"));
@@ -35,34 +62,115 @@ collapseBtn.addEventListener("click", () => {
   tasksDiv.classList.toggle("expand");
 })
 
-addBtns.forEach((addBtn) => {
+
+let clickedButtonIndex = -1;
+
+addBtns.forEach((addBtn, index) => {
   addBtn.addEventListener("click", () => {
     newCard.classList.toggle("show");
+    newCard.listIndex = index;
     overlay.style.display = "block";
-
-    document.addEventListener('click', function(e) {
-      if (!newCard.contains(e.target) && !addBtn.contains(e.target)) {
-        newCard.classList.remove("show");
-        overlay.style.display = "none";
-      }
-    });
-
+    clickedButtonIndex = index;
   });
 })
+
+function clearInputs() {
+  labelSelectSpan.innerText = "Choose a Label";
+  selectedLabel.style.display = "none";
+  imageUrlInput.value = "";
+  cardTitleInput.value = "";
+  cardDescInput.value = "";
+}
 
 closeBtn.addEventListener("click", () => {
   newCard.classList.remove("show");
   overlay.style.display = "none";
+  clearInputs();
 });
+
+
+labelSelect.addEventListener("click", () => selectLabelWrapper.classList.toggle("active"));
+
+labels.forEach(label => {
+
+    label.addEventListener("click", () => {
+        labelSelectSpan.innerText = label.innerText;
+        selectLabelWrapper.classList.remove("active");
+
+        let bgColorClass = `label-${label.innerText.toLowerCase()}`;
+
+        selectedLabel.style.display = "block";
+        selectedLabel.classList.add(bgColorClass);
+        selectedLabelSpan.innerText = labelSelectSpan.innerText;
+    })
+})
+
+removeBtn.addEventListener("click", () => {
+  selectedLabel.style.display = "none";
+  labelSelectSpan.innerText = "Choose a Label";
+})
+
 
 document.addEventListener('click', function(e) {
   if (!headerDropdown.contains(e.target) && !headerProfileUser.contains(e.target)) {
     headerProfileUser.classList.remove("active");
   }
 
-  // if (!newCard.contains(e.target) && !addBtn.contains(e.target)) {
-  //     newCard.classList.toggle("show");
-  // }
+  let clickedAddButton = addBtns[clickedButtonIndex];
+  if (!newCard.contains(e.target) && !clickedAddButton.contains(e.target)) {
+    newCard.classList.remove("show");
+    overlay.style.display = "none";
+    clearInputs();
+  }
+});
+
+saveBtn.addEventListener("click", () => {
+
+  const newCardLabel = selectedLabelSpan.innerText;
+  const newCardImageUrl = imageUrlInput.value;
+  const newCardTitle = cardTitleInput.value;
+  const newCardDesc = cardDescInput.value;
+
+  const date = new Date();
+  const month = date.toLocaleString('default', { month: 'short' });
+
+  const newCardDate = `${month} ${date.getDate()}, ${date.getFullYear()}`;
+
+  let newTask = {
+    "label": newCardLabel,
+    "imageUrl": newCardImageUrl,
+    "title": newCardTitle,
+    "desc": newCardDesc,
+    "createdAt": newCardDate
+  }
+
+  if (newCard.listIndex == 0) {
+    newTask.stage = "backlog";
+  }
+  else if(newCard.listIndex == 1) {
+    newTask.stage = "todo";
+  }
+  else if(newCard.listIndex == 2) {
+    newTask.stage = "in progress";
+  }
+  else {
+    newTask.stage = "review";
+  }
+
+  jsonData.tasks.push(newTask);
+  newCard.classList.remove("show");
+  overlay.style.display = "none";
+  displayCards(jsonData);   
+
+  localStorage.setItem("jsonData", JSON.stringify(jsonData));
+
+  clearInputs();
+});
+
+cancelBtn.addEventListener("click", () => {
+  newCard.classList.remove("show");
+  overlay.style.display = "none";
+  clearInputs();
 });
 
 
@@ -86,223 +194,104 @@ function createLists(backlogTasks, toDoTasks, inProgressTasks, reviewTasks){
 
   backlogTasks.forEach(data => {
     const backlogCard = createCard(data);
-    // backlogList.appendChild(backlogCard);
     backlogList.innerHTML += backlogCard;
   });
 
   toDoTasks.forEach(data => {
     const toDoCard = createCard(data);
-    // toDoList.appendChild(toDoCard);
     toDoList.innerHTML += toDoCard;
   });
 
   inProgressTasks.forEach(data => {
     const inProgressCard = createCard(data);
-    // inProgressList.appendChild(inProgressCard);
     inProgressList.innerHTML += inProgressCard;
   });
 
   reviewTasks.forEach(data => {
     const reviewCard = createCard(data);
-    // reviewList.appendChild(reviewCard);
     reviewList.innerHTML += reviewCard;
   });
 }
 
-// function createCard(data){
+function getLabelColor(label) {
 
-//   const li = document.createElement("li");
-//   const cardLabel = document.createElement("span");
-//   const cardFigure = document.createElement("figure");
-//   const cardImage = document.createElement("img");
-//   const cardTitle = document.createElement("h3");
-//   const cardDesc = document.createElement("h4");
-//   const cardDate = document.createElement("time");
-//   const cardBottom1 = document.createElement("div");
-//   const usersDiv = document.createElement("div");
-//   const cardBottom1Right = document.createElement("div");
-//   const checkSvg = document.createElement("svg");
-//   const checkUse = document.createElement("use");
-//   const checklistSpan = document.createElement("span");
-//   const cardBottom2 = document.createElement("div");
-//   const commentsLink = document.createElement("a");
-//   const commentSvg = document.createElement("svg");
-//   const commentUse = document.createElement("use");
-//   const commentsSpan = document.createElement("span");
-//   const filesLink = document.createElement("a");
-//   const attachmentSvg = document.createElement("svg");
-//   const attachmentUse = document.createElement("use");
-//   const filesSpan = document.createElement("span");
+  switch (label) {
+    case "Design":
+      return "purple";
+    case "Research":
+      return "blue";
+    case "Planning":
+      return "orange";
+    case "Content":
+      return "yellow";
+  }
+}
 
-//   li.classList.add("tasks__list-card", "mb-2");
+function getCommentsDiv(data) {
+	if ((data.comments && data.comments.length > 0) || (data.files && data.files.length > 0)) {
+		return `<div class="card-bottom2">
+			<a href="javascript:void(0)">
+				<svg class="icon comment"><use href="#comment"></use></svg> <span>${data.comments.length} Comments</span>
+			</a>
+			<a href="javascript:void(0)">
+				<svg class="icon attachment"><use href="#attachment"></use></svg> <span>${data.files.length} files</span>
+			</a>
+		</div>`;
+	}
+	return ``;
+}
 
-//   cardLabel.classList.add("card-label");
-//   if(data.label == "Design"){
-//     cardLabel.classList.add("card-label-purple");
-//   }
-//   else if(data.label == "Research"){
-//     cardLabel.classList.add("card-label-blue");
-//   }
-//   else if(data.label == "Planning"){
-//     cardLabel.classList.add("card-label-orange");
-//   }
-//   else{
-//     cardLabel.classList.add("card-label-yellow");
-//   }
-//   cardLabel.innerText = data.label;
-//   li.appendChild(cardLabel);
+function getUsersImages(userUrl){
+		return  `<figure>
+				<img src="${userUrl}" alt="">
+		</figure>`;
+}
 
-//   if(data.imageUrl != ""){
-//     cardFigure.classList.add("design-img", "mt-2");
-//     cardImage.src = data.imageUrl;
-//     cardFigure.appendChild(cardImage);
+function getUsersDiv(data){
 
-//     li.appendChild(cardFigure);
+	if (!data.userUrls || data.userUrls.length == 0) return ``;
 
-//     cardTitle.classList.add("mt-1");
-//   }
-//   else{
-//     cardTitle.classList.add("mt-2");
-//   }
-
-//   cardTitle.classList.add("heading-sm");
-//   cardTitle.innerText = data.title;
-//   li.appendChild(cardTitle);
-
-//   cardDesc.classList.add("heading-xsm");
-//   cardDesc.innerText = data.desc;
-//   li.appendChild(cardDesc);
-
-//   cardDate.innerText = data.createdAt;
-//   li.appendChild(cardDate);
-
-//   if(data.userUrls.length !== 0){
-//     cardBottom1.classList.add("card-bottom1");
-
-//     usersDiv.classList.add("users");
-
-//     data.userUrls.forEach(userUrl => {
-//       const userFigure = document.createElement("figure");
-//       const userImage = document.createElement("img");
-
-//       userImage.src = userUrl;
-//       userFigure.appendChild(userImage);
-
-//       usersDiv.appendChild(userFigure);
-//     });
-
-//     cardBottom1Right.classList.add("card-bottom1-right");
-
-//     checkSvg.classList.add("icon", "check-icon");
-//     checkUse.setAttribute("href", "#check-icon");
-//     checkSvg.appendChild(checkUse);
-
-//     checklistSpan.innerText = data.completedSubTasks + "/" + data.totalSubTasks;
-
-//     cardBottom1Right.appendChild(checkSvg);
-//     cardBottom1Right.appendChild(checklistSpan);
-
-//     cardBottom1.appendChild(usersDiv);
-//     cardBottom1.appendChild(cardBottom1Right);
-
-//     li.appendChild(cardBottom1);
-//   }
-//   else {
-//     cardBottom2.classList.add("card-bottom2");
-
-//     commentsLink.setAttribute("href", "javascript:void(0)");
-
-//     commentSvg.classList.add("icon", "comment");
-//     commentUse.setAttribute("href", "#comment");
-//     commentSvg.appendChild(commentUse);
-
-//     commentsSpan.innerText = data.comments.length + " comments";
-
-//     commentsLink.appendChild(commentSvg);
-//     commentsLink.appendChild(commentsSpan);
-
-//     filesLink.setAttribute("href", "javascript:void(0)");
-
-//     attachmentSvg.classList.add("icon", "attachment");
-//     attachmentUse.setAttribute("href", "#attachment");
-//     attachmentSvg.appendChild(attachmentUse);
-
-//     filesSpan.innerText = data.files.length + " files";
-
-//     filesLink.appendChild(attachmentSvg);
-//     filesLink.appendChild(filesSpan);
-
-//     cardBottom2.appendChild(commentsLink);
-//     cardBottom2.appendChild(filesLink);
-
-//     li.appendChild(cardBottom2);
-//   }
-
-//   return li;
-
-// }
+	return `<div class="card-bottom1">
+    			<div class="users">
+					  ${data.userUrls.map(userUrl => getUsersImages(userUrl))}
+          </div>
+          <div class="card-bottom1-right">
+            <svg class="icon check-icon">
+              <use href="#check-icon"></use>
+            </svg>
+            <span>${data.completedSubTasks}/${data.totalSubTasks}</span>
+          </div>
+        </div>`;
+}
 
 function createCard(data) {
  
-  let li = `<li class="tasks__list-card mb-2">`;
-
-  if(data.label == "Design"){
-    li += `<span class="card-label card-label-purple">${data.label}</span>`;
-  }
-  else if(data.label == "Research")
-  {
-    li += `<span class="card-label card-label-blue">${data.label}</span>`;
-  }
-  else if(data.label == "Planning"){
-    li += `<span class="card-label card-label-orange">${data.label}</span>`;
-  }
-  else{
-    li += `<span class="card-label card-label-yellow">${data.label}</span>`;
-  }
-
-  if(data.imageUrl !== ""){
-    li += `<figure class="design-img mt-2">
-      <img src="${data.imageUrl}" alt="">
-    </figure>
-    <h3 class="heading-sm mt-1">${data.title}</h3>`
-  }
-  else{
-    li += `<h3 class="heading-sm mt-2">${data.title}</h3>`;
-  }
-
-  li += `<h4 class="heading-xsm">${data.desc}</h4>
-  <time datetime="2021-08-20">${data.createdAt}</time>`;
-
-  if(data.userUrls.length !== 0){
-    li += `<div class="card-bottom1">
-    <div class="users">`;
-
-    data.userUrls.forEach(userUrl => {
-      li += `<figure>
-          <img src="${userUrl}" alt="">
-      </figure>`;
-    });
-
-    li += `</div>
-        <div class="card-bottom1-right">
-            <svg class="icon check-icon">
-                <use href="#check-icon"></use>
-            </svg>
-            <span>${data.completedSubTasks}/${data.totalSubTasks}</span>
-        </div>
-    </div>
-    </li>`;
-  }
-  else{
-    li += `<div class="card-bottom2">
-        <a href="javascript:void(0)">
-            <svg class="icon comment"><use href="#comment"></use></svg> <span>${data.comments.length} Comments</span>
-        </a>
-        <a href="javascript:void(0)">
-            <svg class="icon attachment"><use href="#attachment"></use></svg> <span>${data.files.length} files</span>
-        </a>
-    </div>`;
-  }
+  let li = `<li class="tasks__list-card mb-2">
+    <span class="card-label card-label-${getLabelColor(data.label)}">${data.label}</span>
+      ${data.imageUrl && data.imageUrl !== "" ?
+      	(
+		  `<figure class="design-img mt-2">
+         		<img src="${data.imageUrl}" alt="${data.imageUrl}">
+    		</figure>
+    		<h3 class="heading-sm mt-1">${data.title}</h3>`
+		)
+      :
+      	(
+        	`<h3 class="heading-sm mt-2">${data.title}</h3>`
+      	)
+      }
+	
+	<h4 class="heading-xsm">${data.desc}</h4>
+  <time datetime="2021-08-20">${data.createdAt}</time>
+	${
+	  getCommentsDiv(data)
+	}
+	
+	${
+		getUsersDiv(data)
+	}
+  
+  </li>`;
 
   return li;
 }
