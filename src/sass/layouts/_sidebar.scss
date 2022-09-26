@@ -26,18 +26,22 @@
             position: relative;
 
             .side-link-tooltip{
-                left: 120%;
+                left: 118%;
                 top: 50%;
                 transform: translateY(-50%);
             }
 
             &:hover{
+                .side-icon{
+                    fill: #5051F9;
+                }
+
                 .tooltip{
                     display: block;
                 }
             }
 
-            &:hover, &.active{
+            &.active{
                 background: #5051F9;
                 box-shadow: 0px 8px 14px rgba(62, 107, 224, 0.12);
 
