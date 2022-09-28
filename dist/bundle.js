@@ -688,25 +688,21 @@ labels.forEach(function (label, index) {
     selectedLabel.style.display = "block";
 
     if (index === 0) {
-      selectedLabel.classList.add("label-design");
-      selectedLabel.classList.remove("label-research", "label-planning", "label-content");
+      selectedLabel.style.backgroundColor = "#5051F9";
     } else if (index === 1) {
-      selectedLabel.classList.add("label-research");
-      selectedLabel.classList.remove("label-design", "label-planning", "label-content");
+      selectedLabel.style.backgroundColor = "#1EA7FF";
     } else if (index === 2) {
-      selectedLabel.classList.add("label-planning");
-      selectedLabel.classList.remove("label-research", "label-design", "label-content");
+      selectedLabel.style.backgroundColor = "#E97342";
     } else {
-      selectedLabel.classList.add("label-content");
-      selectedLabel.classList.remove("label-research", "label-planning", "label-design");
+      selectedLabel.style.backgroundColor = "#F59E0B";
     }
 
     selectedLabelSpan.innerText = labelSelectSpan.innerText;
   });
 });
 removeBtn.addEventListener("click", function () {
-  selectedLabel.style.display = "none";
-  selectedLabel.classList.remove("label-design", "label-research", "label-planning", "label-content");
+  selectedLabel.style.display = "none"; // selectedLabel.classList.remove("label-design", "label-research", "label-planning", "label-content");
+
   labelSelectSpan.innerText = "Choose a Label";
 });
 document.addEventListener('click', function (e) {

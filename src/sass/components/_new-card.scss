@@ -195,25 +195,25 @@
 }
 
 .label-research{
-    background-color: #1EA7FF;
+    background-color: $light-blue-color;
 
     &:hover{
-        background-color: darken(#1EA7FF, 7%);
+        background-color: darken($light-blue-color, 7%);
     }
 }
 
 .label-planning{
-    background-color: #E97342;
+    background-color: $orange-color;
 
     &:hover{
-        background-color: darken(#E97342, 7%);
+        background-color: darken($orange-color, 7%);
     }
 }
 
 .label-content{
-    background-color: #F59E0B;
+    background-color: $yellow-color;
 
     &:hover{
-        background-color: darken(#F59E0B, 7%);
+        background-color: darken($yellow-color, 7%);
     }
 }
