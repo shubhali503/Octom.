@@ -663,24 +663,16 @@ function clearInputs() {
   cardDescInput.value = "";
 }
 
-closeBtn.addEventListener("click", function () {
+function exitCard() {
   newCard.classList.remove("show");
   overlay.style.display = "none";
   clearInputs();
-});
+}
+
+closeBtn.addEventListener("click", exitCard);
 labelSelect.addEventListener("click", function () {
   return selectLabelWrapper.classList.toggle("active");
-}); // labels.forEach(label => {
-//     label.addEventListener("click", () => {
-//         labelSelectSpan.innerText = label.innerText;
-//         selectLabelWrapper.classList.remove("active");
-//         let bgColorClass = `label-${label.innerText.toLowerCase()}`;
-//         selectedLabel.style.display = "block";
-//         selectedLabel.classList.add(bgColorClass);
-//         selectedLabelSpan.innerText = labelSelectSpan.innerText;
-//     })
-// })
-
+});
 labels.forEach(function (label, index) {
   label.addEventListener("click", function () {
     labelSelectSpan.innerText = label.innerText;
@@ -701,8 +693,7 @@ labels.forEach(function (label, index) {
   });
 });
 removeBtn.addEventListener("click", function () {
-  selectedLabel.style.display = "none"; // selectedLabel.classList.remove("label-design", "label-research", "label-planning", "label-content");
-
+  selectedLabel.style.display = "none";
   labelSelectSpan.innerText = "Choose a Label";
 });
 document.addEventListener('click', function (e) {
@@ -713,9 +704,7 @@ document.addEventListener('click', function (e) {
   var clickedAddButton = addBtns[clickedButtonIndex];
 
   if (!newCard.contains(e.target) && clickedAddButton && !clickedAddButton.contains(e.target)) {
-    newCard.classList.remove("show");
-    overlay.style.display = "none";
-    clearInputs();
+    exitCard();
   }
 });
 saveBtn.addEventListener("click", function () {
@@ -723,6 +712,12 @@ saveBtn.addEventListener("click", function () {
   var newCardImageUrl = imageUrlInput.value;
   var newCardTitle = cardTitleInput.value;
   var newCardDesc = cardDescInput.value;
+
+  if (!newCardLabel || !newCardTitle) {
+    exitCard();
+    return;
+  }
+
   var date = new Date();
   var month = date.toLocaleString('default', {
     month: 'short'
@@ -736,28 +731,22 @@ saveBtn.addEventListener("click", function () {
     "createdAt": newCardDate
   };
 
-  if (newCard.listIndex == 0) {
+  if (newCard.listIndex === 0) {
     newTask.stage = "backlog";
-  } else if (newCard.listIndex == 1) {
+  } else if (newCard.listIndex === 1) {
     newTask.stage = "todo";
-  } else if (newCard.listIndex == 2) {
+  } else if (newCard.listIndex === 2) {
     newTask.stage = "in progress";
   } else {
     newTask.stage = "review";
   }
 
   _data_json__WEBPACK_IMPORTED_MODULE_1__.tasks.push(newTask);
-  newCard.classList.remove("show");
-  overlay.style.display = "none";
+  exitCard();
   displayCards(_data_json__WEBPACK_IMPORTED_MODULE_1__);
   localStorage.setItem("jsonData", JSON.stringify(_data_json__WEBPACK_IMPORTED_MODULE_1__));
-  clearInputs();
 });
-cancelBtn.addEventListener("click", function () {
-  newCard.classList.remove("show");
-  overlay.style.display = "none";
-  clearInputs();
-}); // ----------- Populating and Displaying Cards using Json File-----------------
+cancelBtn.addEventListener("click", exitCard); // ----------- Populating and Displaying Cards using Json File-----------------
 
 function displayCards(jsonData) {
   var backlogTasks = jsonData.tasks.filter(function (task) {
@@ -841,18 +830,23 @@ function createCard(data) {
 
 var chatMsgInput = document.getElementById("chat-msg-input");
 var chatBox = document.querySelector(".chat__gc-box");
-var date = new Date();
-var hours = date.getHours();
-var minutes = date.getMinutes();
-var ampm = hours >= 12 ? 'pm' : 'am';
-hours = hours % 12;
-hours = hours ? hours : 12;
-hours = hours < 10 ? "0".concat(hours) : hours;
-minutes = minutes < 10 ? "0".concat(minutes) : minutes;
-var chatTime = "".concat(hours, ".").concat(minutes, " ").concat(ampm);
+
+function calculateChatTime() {
+  var date = new Date();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  hours = hours < 10 ? "0".concat(hours) : hours;
+  minutes = minutes < 10 ? "0".concat(minutes) : minutes;
+  var chatTime = "".concat(hours, ".").concat(minutes, " ").concat(ampm);
+  return chatTime;
+}
+
 chatMsgInput.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
-    chatBox.innerHTML += "<div class=\"chat-msg-user mb-3\">\n    <div class=\"chat-text\">\n        <p class=\"p-1\">".concat(event.target.value, "</p>\n        <span><svg class=\"icon seen-icon\"><use href=\"#seen-icon\"></use></svg> ").concat(chatTime, "</span>\n    </div>\n    <figure>\n        <img src=\"images/person6.png\" alt=\"user-2\">\n    </figure>\n    </div>");
+    chatBox.innerHTML += "<div class=\"chat-msg-user mb-3\">\n    <div class=\"chat-text\">\n        <p class=\"p-1\">".concat(event.target.value, "</p>\n        <span><svg class=\"icon seen-icon\"><use href=\"#seen-icon\"></use></svg> ").concat(calculateChatTime(), "</span>\n    </div>\n    <figure>\n        <img src=\"images/person6.png\" alt=\"user-2\">\n    </figure>\n    </div>");
     event.target.value = "";
   }
 });

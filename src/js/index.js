@@ -83,28 +83,16 @@ function clearInputs() {
   cardDescInput.value = "";
 }
 
-closeBtn.addEventListener("click", () => {
+function exitCard() {
   newCard.classList.remove("show");
   overlay.style.display = "none";
   clearInputs();
-});
+}
+
+closeBtn.addEventListener("click", exitCard);
 
 
 labelSelect.addEventListener("click", () => selectLabelWrapper.classList.toggle("active"));
-
-// labels.forEach(label => {
-
-//     label.addEventListener("click", () => {
-//         labelSelectSpan.innerText = label.innerText;
-//         selectLabelWrapper.classList.remove("active");
-
-//         let bgColorClass = `label-${label.innerText.toLowerCase()}`;
-
-//         selectedLabel.style.display = "block";
-//         selectedLabel.classList.add(bgColorClass);
-//         selectedLabelSpan.innerText = labelSelectSpan.innerText;
-//     })
-// })
 
 labels.forEach((label, index) => {
 
@@ -135,7 +123,6 @@ labels.forEach((label, index) => {
 
 removeBtn.addEventListener("click", () => {
   selectedLabel.style.display = "none";
-  // selectedLabel.classList.remove("label-design", "label-research", "label-planning", "label-content");
   labelSelectSpan.innerText = "Choose a Label";
 })
 
@@ -148,9 +135,7 @@ document.addEventListener('click', function(e) {
   let clickedAddButton = addBtns[clickedButtonIndex];
 
   if (!newCard.contains(e.target) && (clickedAddButton && !clickedAddButton.contains(e.target))) {
-    newCard.classList.remove("show");
-    overlay.style.display = "none";
-    clearInputs();
+    exitCard();
   }
 });
 
@@ -160,6 +145,11 @@ saveBtn.addEventListener("click", () => {
   const newCardImageUrl = imageUrlInput.value;
   const newCardTitle = cardTitleInput.value;
   const newCardDesc = cardDescInput.value;
+
+  if (!newCardLabel || !newCardTitle) {
+    exitCard();
+		return;
+	}
 
   const date = new Date();
   const month = date.toLocaleString('default', { month: 'short' });
@@ -174,13 +164,13 @@ saveBtn.addEventListener("click", () => {
     "createdAt": newCardDate
   }
 
-  if (newCard.listIndex == 0) {
+  if (newCard.listIndex === 0) {
     newTask.stage = "backlog";
   }
-  else if(newCard.listIndex == 1) {
+  else if(newCard.listIndex === 1) {
     newTask.stage = "todo";
   }
-  else if(newCard.listIndex == 2) {
+  else if(newCard.listIndex === 2) {
     newTask.stage = "in progress";
   }
   else {
@@ -188,20 +178,13 @@ saveBtn.addEventListener("click", () => {
   }
 
   jsonData.tasks.push(newTask);
-  newCard.classList.remove("show");
-  overlay.style.display = "none";
+  exitCard();
   displayCards(jsonData);   
 
   localStorage.setItem("jsonData", JSON.stringify(jsonData));
-
-  clearInputs();
 });
 
-cancelBtn.addEventListener("click", () => {
-  newCard.classList.remove("show");
-  overlay.style.display = "none";
-  clearInputs();
-});
+cancelBtn.addEventListener("click", exitCard);
 
 
 // ----------- Populating and Displaying Cards using Json File-----------------
@@ -330,22 +313,25 @@ function createCard(data) {
 const chatMsgInput = document.getElementById("chat-msg-input");
 const chatBox = document.querySelector(".chat__gc-box");
 
-let date = new Date();
-let hours = date.getHours();
-let minutes = date.getMinutes();
-let ampm = hours >= 12 ? 'pm' : 'am';
-hours = hours % 12;
-hours = hours ? hours : 12;
-hours = hours < 10 ? `0${hours}` : hours;
-minutes = minutes < 10 ? `0${minutes}` : minutes;
-let chatTime = `${hours}.${minutes} ${ampm}`;
+function calculateChatTime() {
+	let date = new Date();
+	let hours = date.getHours();
+	let minutes = date.getMinutes();
+	let ampm = hours >= 12 ? 'pm' : 'am';
+	hours = hours % 12;
+	hours = hours ? hours : 12;
+	hours = hours < 10 ? `0${hours}` : hours;
+	minutes = minutes < 10 ? `0${minutes}` : minutes;
+	const chatTime = `${hours}.${minutes} ${ampm}`;
+	return chatTime;
+}
 
 chatMsgInput.addEventListener("keyup", (event) => {
   if (event.key === "Enter") {
     chatBox.innerHTML += `<div class="chat-msg-user mb-3">
     <div class="chat-text">
         <p class="p-1">${event.target.value}</p>
-        <span><svg class="icon seen-icon"><use href="#seen-icon"></use></svg> ${chatTime}</span>
+        <span><svg class="icon seen-icon"><use href="#seen-icon"></use></svg> ${calculateChatTime()}</span>
     </div>
     <figure>
         <img src="images/person6.png" alt="user-2">
