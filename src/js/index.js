@@ -75,6 +75,7 @@ addBtns.forEach((addBtn, index) => {
 })
 
 function clearInputs() {
+  selectLabelWrapper.classList.remove("active");
   labelSelectSpan.innerText = "Choose a Label";
   selectedLabel.style.display = "none";
   imageUrlInput.value = "";
@@ -91,22 +92,54 @@ closeBtn.addEventListener("click", () => {
 
 labelSelect.addEventListener("click", () => selectLabelWrapper.classList.toggle("active"));
 
-labels.forEach(label => {
+// labels.forEach(label => {
 
-    label.addEventListener("click", () => {
-        labelSelectSpan.innerText = label.innerText;
-        selectLabelWrapper.classList.remove("active");
+//     label.addEventListener("click", () => {
+//         labelSelectSpan.innerText = label.innerText;
+//         selectLabelWrapper.classList.remove("active");
 
-        let bgColorClass = `label-${label.innerText.toLowerCase()}`;
+//         let bgColorClass = `label-${label.innerText.toLowerCase()}`;
 
-        selectedLabel.style.display = "block";
-        selectedLabel.classList.add(bgColorClass);
-        selectedLabelSpan.innerText = labelSelectSpan.innerText;
-    })
+//         selectedLabel.style.display = "block";
+//         selectedLabel.classList.add(bgColorClass);
+//         selectedLabelSpan.innerText = labelSelectSpan.innerText;
+//     })
+// })
+
+labels.forEach((label, index) => {
+
+  label.addEventListener("click", () => {
+    labelSelectSpan.innerText = label.innerText;
+    selectLabelWrapper.classList.remove("active");
+
+    selectedLabel.style.display = "block";
+    if(index === 0)
+    {
+      selectedLabel.classList.add("label-design");
+      selectedLabel.classList.remove("label-research", "label-planning", "label-content");
+    }
+    else if(index === 1)
+    {
+      selectedLabel.classList.add("label-research");
+      selectedLabel.classList.remove("label-design", "label-planning", "label-content");
+    }
+    else if(index === 2)
+    {
+      selectedLabel.classList.add("label-planning");
+      selectedLabel.classList.remove("label-research", "label-design", "label-content");
+    }
+    else{
+      selectedLabel.classList.add("label-content");
+      selectedLabel.classList.remove("label-research", "label-planning", "label-design");
+    }
+    selectedLabelSpan.innerText = labelSelectSpan.innerText;
+})
+
 })
 
 removeBtn.addEventListener("click", () => {
   selectedLabel.style.display = "none";
+  selectedLabel.classList.remove("label-design", "label-research", "label-planning", "label-content");
   labelSelectSpan.innerText = "Choose a Label";
 })
 
@@ -117,7 +150,8 @@ document.addEventListener('click', function(e) {
   }
 
   let clickedAddButton = addBtns[clickedButtonIndex];
-  if (!newCard.contains(e.target) && !clickedAddButton.contains(e.target)) {
+
+  if (!newCard.contains(e.target) && (clickedAddButton && !clickedAddButton.contains(e.target))) {
     newCard.classList.remove("show");
     overlay.style.display = "none";
     clearInputs();
@@ -271,7 +305,7 @@ function createCard(data) {
       ${data.imageUrl && data.imageUrl !== "" ?
       	(
 		  `<figure class="design-img mt-2">
-         		<img src="${data.imageUrl}" alt="${data.imageUrl}">
+         		<img src="${data.imageUrl}" alt="card-image">
     		</figure>
     		<h3 class="heading-sm mt-1">${data.title}</h3>`
 		)

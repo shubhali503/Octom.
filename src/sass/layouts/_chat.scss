@@ -91,6 +91,11 @@
         &-box{
             flex: 1;
             overflow-y: auto;
+            @include transition-ease;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
 
             .chat-msg{
 

@@ -655,6 +655,7 @@ addBtns.forEach(function (addBtn, index) {
 });
 
 function clearInputs() {
+  selectLabelWrapper.classList.remove("active");
   labelSelectSpan.innerText = "Choose a Label";
   selectedLabel.style.display = "none";
   imageUrlInput.value = "";
@@ -669,19 +670,43 @@ closeBtn.addEventListener("click", function () {
 });
 labelSelect.addEventListener("click", function () {
   return selectLabelWrapper.classList.toggle("active");
-});
-labels.forEach(function (label) {
+}); // labels.forEach(label => {
+//     label.addEventListener("click", () => {
+//         labelSelectSpan.innerText = label.innerText;
+//         selectLabelWrapper.classList.remove("active");
+//         let bgColorClass = `label-${label.innerText.toLowerCase()}`;
+//         selectedLabel.style.display = "block";
+//         selectedLabel.classList.add(bgColorClass);
+//         selectedLabelSpan.innerText = labelSelectSpan.innerText;
+//     })
+// })
+
+labels.forEach(function (label, index) {
   label.addEventListener("click", function () {
     labelSelectSpan.innerText = label.innerText;
     selectLabelWrapper.classList.remove("active");
-    var bgColorClass = "label-".concat(label.innerText.toLowerCase());
     selectedLabel.style.display = "block";
-    selectedLabel.classList.add(bgColorClass);
+
+    if (index === 0) {
+      selectedLabel.classList.add("label-design");
+      selectedLabel.classList.remove("label-research", "label-planning", "label-content");
+    } else if (index === 1) {
+      selectedLabel.classList.add("label-research");
+      selectedLabel.classList.remove("label-design", "label-planning", "label-content");
+    } else if (index === 2) {
+      selectedLabel.classList.add("label-planning");
+      selectedLabel.classList.remove("label-research", "label-design", "label-content");
+    } else {
+      selectedLabel.classList.add("label-content");
+      selectedLabel.classList.remove("label-research", "label-planning", "label-design");
+    }
+
     selectedLabelSpan.innerText = labelSelectSpan.innerText;
   });
 });
 removeBtn.addEventListener("click", function () {
   selectedLabel.style.display = "none";
+  selectedLabel.classList.remove("label-design", "label-research", "label-planning", "label-content");
   labelSelectSpan.innerText = "Choose a Label";
 });
 document.addEventListener('click', function (e) {
@@ -691,7 +716,7 @@ document.addEventListener('click', function (e) {
 
   var clickedAddButton = addBtns[clickedButtonIndex];
 
-  if (!newCard.contains(e.target) && !clickedAddButton.contains(e.target)) {
+  if (!newCard.contains(e.target) && clickedAddButton && !clickedAddButton.contains(e.target)) {
     newCard.classList.remove("show");
     overlay.style.display = "none";
     clearInputs();
@@ -814,7 +839,7 @@ function getUsersDiv(data) {
 }
 
 function createCard(data) {
-  var li = "<li class=\"tasks__list-card mb-2\">\n    <span class=\"card-label card-label-".concat(getLabelColor(data.label), "\">").concat(data.label, "</span>\n      ").concat(data.imageUrl && data.imageUrl !== "" ? "<figure class=\"design-img mt-2\">\n         \t\t<img src=\"".concat(data.imageUrl, "\" alt=\"").concat(data.imageUrl, "\">\n    \t\t</figure>\n    \t\t<h3 class=\"heading-sm mt-1\">").concat(data.title, "</h3>") : "<h3 class=\"heading-sm mt-2\">".concat(data.title, "</h3>"), "\n\t\n\t<h4 class=\"heading-xsm\">").concat(data.desc, "</h4>\n  <time datetime=\"2021-08-20\">").concat(data.createdAt, "</time>\n\t").concat(getCommentsDiv(data), "\n\t\n\t").concat(getUsersDiv(data), "\n  \n  </li>");
+  var li = "<li class=\"tasks__list-card mb-2\">\n    <span class=\"card-label card-label-".concat(getLabelColor(data.label), "\">").concat(data.label, "</span>\n      ").concat(data.imageUrl && data.imageUrl !== "" ? "<figure class=\"design-img mt-2\">\n         \t\t<img src=\"".concat(data.imageUrl, "\" alt=\"card-image\">\n    \t\t</figure>\n    \t\t<h3 class=\"heading-sm mt-1\">").concat(data.title, "</h3>") : "<h3 class=\"heading-sm mt-2\">".concat(data.title, "</h3>"), "\n\t\n\t<h4 class=\"heading-xsm\">").concat(data.desc, "</h4>\n  <time datetime=\"2021-08-20\">").concat(data.createdAt, "</time>\n\t").concat(getCommentsDiv(data), "\n\t\n\t").concat(getUsersDiv(data), "\n  \n  </li>");
   return li;
 }
 
