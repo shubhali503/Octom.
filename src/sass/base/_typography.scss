@@ -6,7 +6,7 @@
 .heading-md{
     font-size: 17px;
     font-weight: 500;
-    color: #232360;
+    color: $text-primary;
 }
 
 .heading-sm{
@@ -17,5 +17,5 @@
 .heading-xsm{
     font-size: 12px;
     font-weight: 500;
-    color: #768396;
+    color: $text-muted;
 }

@@ -22,7 +22,7 @@
 .bell-icon{
     width: 18px;
     height: 19px;
-    fill: #768396;
+    fill: $text-muted;
 }
 
 .chevron-down{
@@ -34,25 +34,25 @@
 .ellipsis{
     width: 18px;
     height: 4px;
-    fill: #768396;
+    fill: $text-muted;
 }
 
 .check-icon{
     width: 17px;
     height: 17px;
-    fill: #768396;
+    fill: $text-muted;
 }
 
 .comment{
     width: 10px;
     height: 11px;
-    fill: #768396;
+    fill: $text-muted;
 }
 
 .attachment{
     width: 8px;
     height: 8px;
-    fill: #768396;
+    fill: $text-muted;
 }
 
 .seen-icon{
@@ -64,7 +64,7 @@
 .microphone{
     width: 11px;
     height: 15px;
-    fill: #768396;
+    fill: $text-muted;
 }
 
 .close-icon{
@@ -77,5 +77,5 @@
 .chevron-right{
     width: 7px;
     height: 11px;
-    fill: #5051F9;
+    fill: $blue-color;
 }

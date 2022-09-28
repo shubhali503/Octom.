@@ -18,7 +18,7 @@
 
         &-input{
             width: calc(100% - 32px);
-            background: transparent;
+            background-color: transparent;
             outline: 0;
             vertical-align: middle;
             color: #23235F;
@@ -66,7 +66,7 @@
                 background-color: #F3F7FA;
 
                 .bell-icon{
-                    fill: #5150F9;
+                    fill: #5250F9;
                 }
             }
         }
@@ -87,7 +87,7 @@
             }
 
             .chevron-down{
-                transition: 0.3s;
+                @include transition-ease;
             }
 
             &:hover{
@@ -105,7 +105,7 @@
             background-color: white;
             border-radius: 5px;
             box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
+            @include transition-ease;
         }
 
         &-list{
@@ -125,7 +125,7 @@
                     .user-name{
                         font-size: 18px;
                         font-weight: 500;
-                        color: #232360;
+                        color: $text-primary;
 
                         .tooltip-username{
                             left: 0px;
@@ -142,7 +142,7 @@
                     .user-email{
                         display: block;
                         font-size: 14px;
-                        color: #768396;
+                        color: $text-muted;
 
                         .tooltip-email{
                             left: 0px;
@@ -163,7 +163,7 @@
                 border-radius: 5px;
 
                 a{
-                    color: #232360;
+                    color: $text-primary;
                     font-size: 14px;
                 }
 

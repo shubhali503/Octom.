@@ -28,14 +28,14 @@
                 padding: 10px;
                 width: 50%;
                 background-color: #f3f5f7;
-                color: #768396;
+                color: $text-muted;
                 border-radius: 5px;
                 font-size: 14px;
                 @include flexCenter(space-between, center);
                 cursor: pointer;
 
                 svg{
-                    transition: 0.3s;
+                    @include transition-ease;
                 }
             }
 
@@ -73,7 +73,7 @@
                 border-radius: 5px;
                 z-index: 5;
                 cursor: pointer;
-                transition: all 0.3s ease;
+                @include transition-ease;
 
                 .label{
                     margin: 8px 0;
@@ -132,7 +132,7 @@
             outline: none;
             border-radius: 5px;
             font-size: 14px;
-            color: #768396;
+            color: $text-muted;
             background-color: #f3f5f7;
             flex: 1;
             font-family: inherit;
@@ -150,25 +150,23 @@
         ::placeholder{
             font-family: inherit;
             font-size: 14px;
-            color: #768396;
+            color: $text-muted;
         }
 
         .card-btns{
 
             button{
                 padding: 10px 15px;
-                cursor: pointer;
                 border-radius: 5px;
                 font-weight: 500;
-                color: #000000;
             }
 
             .save-btn{
-                background-color: #5051F9;
+                background-color: $blue-color;
                 color: white;
 
                 &:hover{
-                    background-color: darken(#5051F9, 10%);
+                    background-color: darken($blue-color, 10%);
                 }
             }
 
@@ -193,10 +191,10 @@
 }
 
 .label-design{
-    background-color: #5051F9;
+    background-color: $blue-color;
 
     &:hover{
-        background-color: darken(#5051F9, 7%);
+        background-color: darken($blue-color, 7%);
     }
 }
 

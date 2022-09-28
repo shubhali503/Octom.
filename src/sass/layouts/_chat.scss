@@ -5,7 +5,7 @@
     position: fixed;
     right: 0;
     top: 83px;
-    transition: all 0.3s ease;
+    @include transition-ease;
     // z-index: 100;
 
     .collapse-btn{
@@ -36,18 +36,18 @@
         &-title{
             font-size: 14px;
             font-weight: 500;
-            color: #232360;
+            color: $text-primary;
 
             span{
                 font-weight: 700;
-                color: #5051F9;
+                color: $blue-color;
             }
         }
 
         .view{
             font-size: 13px;
             font-weight: 700;
-            color: #768396;
+            color: $text-muted;
         }
     }
 
@@ -120,7 +120,7 @@
                         background-color: #F3F5F7;
                         font-size: 12px;
                         font-weight: 500;
-                        color: #768396;
+                        color: $text-muted;
                         border-radius: 5px 5px 5px 0;
                     }
 
@@ -140,7 +140,7 @@
                     margin-right: 5px;
 
                     p{
-                        background-color: #5051F9;
+                        background-color: $blue-color;
                         color: white;
                         border-radius: 5px 5px 0 5px;
                     }
